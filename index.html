@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Portfolio | Achmad Mustofa Yusuf</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: #ededed;
+            background: #081b29;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: rgba(8, 27, 41, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: 0.3s;
+        }
+
+        .logo {
+            position: relative;
+            font-size: 25px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: default;
+            opacity: 0;
+            animation: slideRight 1s ease forwards;
+        }
+
+        .navbar a {
+            display: inline-block;
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 35px;
+            transition: 0.3s;
+            opacity: 0;
+            animation: slideTop 0.5s ease forwards;
+            animation-delay: calc(0.2s * var(--i));
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #0ef;
+        }
+
+        .home {
+            position: relative;
+            width: 100%;
+            background: linear-gradient(135deg, #081b29 0%, #0a2f3f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 10% 0;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .home-content {
+            max-width: 550px;
+            z-index: 2;
+        }
+
+        .home-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            opacity: 0;
+            animation: slideBottom 1s ease forwards;
+            animation-delay: 0.7s;
+        }
+
+        .home-content h3:nth-of-type(2) {
+            margin-bottom: 30px;
+            animation: slideTop 1s ease forwards;
+            animation-delay: 0.7s;
+        }
+
+        .home-content h1 {
+            font-size: 49px;
+            font-weight: 700;
+            margin: -3px 0;
+            opacity: 0;
+            animation: slideRight 1s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .home-content p {
+            font-size: 20px;
+            opacity: 0;
+            animation: slideLeft 1s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .home-sci {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .home-sci a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid #0ef;
+            border-radius: 50%;
+            font-size: 20px;
+            color: #0ef;
+            text-decoration: none;
+            transition: 0.5s ease;
+            opacity: 0;
+            animation: slideLeft 1s ease forwards;
+            animation-delay: calc(0.2s * var(--i));
+        }
+
+        .home-sci a:hover {
+            background: #0ef;
+            color: #081b29;
+            box-shadow: 0 0 20px #0ef;
+            transform: translateY(-3px);
+        }
+
+        .doc-links {
+            display: flex;
+            gap: 15px;
+            margin-left: 15px;
+        }
+
+        .doc-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid #0ef;
+            border-radius: 50%;
+            font-size: 20px;
+            color: #0ef;
+            text-decoration: none;
+            transition: 0.5s ease;
+            opacity: 0;
+            animation: slideLeft 1s ease forwards;
+            animation-delay: calc(0.2s * 10);
+            position: relative;
+        }
+
+        .doc-link:hover {
+            background: #0ef;
+            color: #081b29;
+            box-shadow: 0 0 20px #0ef;
+            transform: translateY(-3px);
+        }
+
+        .doc-link .tooltip {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0ef;
+            color: #081b29;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .doc-link:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: -45px;
+        }
+
+        .download-cv-wrapper {
+            opacity: 0;
+            animation: slideLeft 1s ease forwards;
+            animation-delay: 1.8s;
+        }
+
+        .btn-download-cv {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 32px;
+            background: #0ef;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #081b29;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.3);
+        }
+
+        .btn-download-cv i {
+            font-size: 22px;
+        }
+
+        .btn-download-cv:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 238, 255, 0.6);
+            background: #00d4ff;
+        }
+
+        .btn-box {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #0ef;
+            border-radius: 40px;
+            font-size: 16px;
+            color: #081b29;
+            letter-spacing: 1px;
+            text-decoration: none;
+            font-weight: 600;
+            opacity: 0;
+            animation: slideTop 1s ease forwards;
+            animation-delay: 2s;
+            box-shadow: 0 0 5px #0ef, 0 0 25px #0ef;
+            transition: 0.3s;
+        }
+
+        .btn-box:hover {
+            box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan, 0 0 100px cyan;
+            transform: translateY(-2px);
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 3rem;
+            padding: 100px 10% 0;
+        }
+
+        .about-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 238, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .about-img img:hover {
+            transform: scale(1.02);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 60px;
+        }
+
+        .about-text h2 span {
+            color: #0ef;
+        }
+
+        .about-text h4 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.7;
+            margin: 15px 0 30px;
+        }
+
+        .about-text p {
+            color: aliceblue;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        #education {
+            padding: 100px 10% 0;
+        }
+
+        .sub-title {
+            text-align: center;
+            font-size: 60px;
+            padding-bottom: 70px;
+        }
+
+        .sub-title span {
+            color: #0ef;
+        }
+
+        /* Style Pendidikan Timeline */
+        .education-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #0ef, #00aaff, #0ef);
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+        }
+
+        .edu-item {
+            position: relative;
+            width: 100%;
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .edu-item:nth-child(even) {
+            justify-content: flex-start;
+        }
+
+        .edu-content {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 25px 30px;
+            position: relative;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 238, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .edu-content:hover {
+            transform: translateY(-8px);
+            border-color: #0ef;
+            box-shadow: 0 10px 30px rgba(0, 238, 255, 0.2);
+            background: rgba(0, 238, 255, 0.05);
+        }
+
+        .edu-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0ef, #00aaff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(0, 238, 255, 0.5);
+        }
+
+        .edu-item:nth-child(odd) .edu-icon {
+            right: -80px;
+        }
+
+        .edu-item:nth-child(even) .edu-icon {
+            left: -80px;
+        }
+
+        .edu-icon i {
+            font-size: 28px;
+            color: #081b29;
+        }
+
+        .edu-year {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(0, 238, 255, 0.2);
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #0ef;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 238, 255, 0.3);
+        }
+
+        .edu-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .edu-content h4 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #0ef;
+            margin-bottom: 12px;
+        }
+
+        .edu-content p {
+            font-size: 15px;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .edu-detail {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .edu-detail span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .edu-detail span i {
+            color: #0ef;
+            font-size: 14px;
+        }
+
+        .edu-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            background: #0ef;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #0ef;
+            z-index: 5;
+        }
+
+        /* ========== STYLE PROJECT SECTION ========== */
+        #projects {
+            padding: 100px 10% 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 238, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #0ef;
+            box-shadow: 0 20px 40px rgba(0, 238, 255, 0.2);
+        }
+
+        .project-icon {
+            background: linear-gradient(135deg, #0ef, #00aaff);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .project-icon i {
+            font-size: 60px;
+            color: #081b29;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .project-description {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-tech span {
+            background: rgba(0, 238, 255, 0.1);
+            border: 1px solid rgba(0, 238, 255, 0.3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #0ef;
+        }
+
+        .play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0ef;
+            color: #081b29;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 238, 255, 0.5);
+        }
+
+        /* Modal Styles */
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game-modal.active {
+            display: flex;
+        }
+
+        .game-container {
+            background: #081b29;
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid #0ef;
+            position: relative;
+        }
+
+        .close-game {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: #0ef;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-game:hover {
+            color: #fff;
+            transform: rotate(90deg);
+        }
+
+        .game-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #0ef;
+        }
+
+        .game-input {
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            margin: 10px 0;
+            width: 150px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .game-btn {
+            background: #0ef;
+            color: #081b29;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 5px;
+        }
+
+        /* ========== STYLE PENGALAMAN MAGANG YANG DIPERBAGUS ========== */
+        #experience {
+            padding: 100px 10% 0;
+        }
+
+        .main-text h2 {
+            font-size: 60px;
+            line-height: 1;
+            text-align: center;
+            padding-bottom: 60px;
+        }
+
+        .main-text h2 span {
+            color: #0ef;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .exp-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.3));
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 238, 255, 0.3);
+            position: relative;
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 238, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
+
+        .exp-card:hover::before {
+            opacity: 1;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-12px);
+            border-color: #0ef;
+            box-shadow: 0 25px 45px rgba(0, 238, 255, 0.25);
+        }
+
+        .exp-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .exp-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .exp-card:hover .exp-image-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .exp-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(8, 27, 41, 0.9), rgba(0, 238, 255, 0.2));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .exp-card:hover .exp-overlay {
+            opacity: 1;
+        }
+
+        .exp-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #0ef, #00aaff);
+            color: #081b29;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 5;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .exp-content {
+            padding: 28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .exp-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .exp-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 238, 255, 0.2);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #0ef;
+            backdrop-filter: blur(5px);
+        }
+
+        .exp-date i {
+            font-size: 14px;
+        }
+
+        .exp-company {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: #aaa;
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 15px;
+            border-radius: 30px;
+            width: fit-content;
+        }
+
+        .exp-company i {
+            color: #0ef;
+            font-size: 16px;
+        }
+
+        .exp-description {
+            color: #ddd;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .exp-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .exp-skill-tag {
+            background: rgba(0, 238, 255, 0.1);
+            border: 1px solid rgba(0, 238, 255, 0.3);
+            padding: 5px 14px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #0ef;
+            transition: all 0.3s ease;
+        }
+
+        .exp-skill-tag:hover {
+            background: rgba(0, 238, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .exp-achievement {
+            background: linear-gradient(135deg, rgba(0, 238, 255, 0.08), rgba(0, 170, 255, 0.05));
+            border-left: 4px solid #0ef;
+            padding: 14px 18px;
+            border-radius: 16px;
+            margin-top: 15px;
+        }
+
+        .exp-achievement p {
+            font-size: 13px;
+            color: #ffd966;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .exp-achievement p i {
+            font-size: 18px;
+            color: #ffd700;
+        }
+
+        .exp-stats {
+            display: flex;
+            gap: 25px;
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(0, 238, 255, 0.2);
+        }
+
+        .exp-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #ccc;
+        }
+
+        .exp-stat i {
+            color: #0ef;
+            font-size: 18px;
+        }
+
+        #skills {
+            padding: 100px 10% 0;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .container1 {
+            width: 100%;
+            max-width: 510px;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .heading1 {
+            text-align: center;
+            text-decoration: underline;
+            text-underline-offset: 10px;
+            text-decoration-thickness: 5px;
+            margin-bottom: 50px;
+            font-size: 28px;
+        }
+
+        .bar {
+            font-size: 23px;
+            margin: 40px 0;
+        }
+
+        .Technical-bars .bar:first-child {
+            margin-top: 0;
+        }
+
+        .Technical-bars .bar:last-child {
+            margin-bottom: 0;
+        }
+
+        .Technical-bars .bar .info {
+            margin-bottom: 5px;
+        }
+
+        .Technical-bars .bar .info span {
+            font-size: 17px;
+            font-weight: 500;
+            animation: showText 0.5s 1s linear forwards;
+            opacity: 0;
+        }
+
+        .Technical-bars .bar .progress-line {
+            position: relative;
+            border-radius: 10px;
+            width: 100%;
+            height: 5px;
+            background-color: #333;
+            animation: animate 1s cubic-bezier(1, 0, 0.5, 1) forwards;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        @keyframes animate {
+            100% { transform: scaleX(1); }
+        }
+
+        .Technical-bars .bar .progress-line span {
+            height: 100%;
+            background-color: #0ef;
+            position: absolute;
+            border-radius: 10px;
+            animation: animate 1s 1s cubic-bezier(1, 0, 0.5, 1) forwards;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        .progress-line.os span { width: 80%; }
+        .progress-line.network span { width: 85%; }
+        .progress-line.assembly span { width: 80%; }
+        .progress-line.hardware span { width: 88%; }
+        .progress-line.htmlcss span { width: 75%; }
+
+        .Technical-bars .bar .progress-line span::after {
+            position: absolute;
+            padding: 1px 8px;
+            background-color: #333;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 3px;
+            top: -20px;
+            right: -20px;
+            animation: showText 0.5s 1.5s linear forwards;
+            opacity: 0;
+        }
+
+        .progress-line.os span::after { content: "80%"; }
+        .progress-line.network span::after { content: "85%"; }
+        .progress-line.assembly span::after { content: "80%"; }
+        .progress-line.hardware span::after { content: "88%"; }
+        .progress-line.htmlcss span::after { content: "75%"; }
+
+        @keyframes showText {
+            100% { opacity: 1; }
+        }
+
+        .radial-bars {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: flex-start;
+        }
+
+        .radial-bars .radial-bar {
+            width: 50%;
+            height: 170px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .radial-bars .radial-bar svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            width: 120px;
+            height: 160px;
+        }
+
+        .radial-bars .radial-bar .progress-bar {
+            stroke-width: 10;
+            stroke: #333;
+            fill: transparent;
+            stroke-dasharray: 502;
+            stroke-dashoffset: 502;
+            stroke-linecap: round;
+            animation: animate-bar 1s linear forwards;
+        }
+
+        @keyframes animate-bar {
+            100% { stroke-dashoffset: -1; }
+        }
+
+        .path {
+            stroke-width: 10;
+            stroke: #0ef;
+            fill: transparent;
+            stroke-dasharray: 502;
+            stroke-dashoffset: 502;
+            stroke-linecap: round;
+        }
+
+        .path-1 { animation: animate-path1 1s 1s linear forwards; }
+        .path-2 { animation: animate-path2 1s 1s linear forwards; }
+        .path-3 { animation: animate-path3 1s 1s linear forwards; }
+        .path-4 { animation: animate-path4 1s 1s linear forwards; }
+
+        @keyframes animate-path1 { 100% { stroke-dashoffset: 50; } }
+        @keyframes animate-path2 { 100% { stroke-dashoffset: 100; } }
+        @keyframes animate-path3 { 100% { stroke-dashoffset: 75; } }
+        @keyframes animate-path4 { 100% { stroke-dashoffset: 125; } }
+
+        .radial-bar .percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 17px;
+            font-weight: 500;
+            animation: showText 0.5s 1s linear forwards;
+            opacity: 0;
+        }
+
+        .radial-bar .text {
+            width: 100%;
+            position: absolute;
+            text-align: center;
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            font-size: 17px;
+            font-weight: 500;
+            animation: showText 0.5s 1s linear forwards;
+            opacity: 0;
+        }
+
+        .contact {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 3rem;
+            padding: 100px 10% 0;
+        }
+
+        .contact-text h2 {
+            font-size: 60px;
+            line-height: 1;
+        }
+
+        .contact-text h2 span {
+            color: #0ef;
+        }
+
+        .contact-text h4 {
+            margin: 15px 0;
+            color: rgb(228, 228, 228);
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .contact-text p {
+            color: rgb(177, 177, 177);
+            font-size: 18px;
+            line-height: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .contact-list {
+            margin-bottom: 3rem;
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-list i {
+            color: #0ef;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .contact-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contact-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid #0ef;
+            border-radius: 50%;
+            font-size: 20px;
+            color: #0ef;
+            text-decoration: none;
+            transition: 0.5s ease;
+        }
+
+        .contact-icons a:hover {
+            background: #0ef;
+            color: #000;
+            box-shadow: 0 0 20px #0ef;
+            transform: translateY(-3px);
+        }
+
+        .contact-form form {
+            position: relative;
+        }
+
+        .contact-form form input,
+        .contact-form form textarea {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 18px;
+            background: #2c3e4e;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .contact-form form input::placeholder,
+        .contact-form form textarea::placeholder {
+            color: #aaa;
+        }
+
+        .contact-form textarea {
+            resize: none;
+            height: 220px;
+        }
+
+        .contact-form form .send {
+            display: inline-block;
+            padding: 14px 60px;
+            background: #0ef;
+            border-radius: 40px;
+            font-size: 16px;
+            color: #081b29;
+            letter-spacing: 1px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form form .send:hover {
+            box-shadow: 0 0 5px cyan, 0 0 25px cyan, 0 0 50px cyan;
+            transform: translateY(-2px);
+        }
+
+        .last-text p {
+            width: 100%;
+            text-align: center;
+            padding: 25px 0;
+            background: #0a4b5e;
+            font-weight: 300;
+            margin-top: 70px;
+        }
+
+        .top {
+            position: fixed;
+            bottom: 2.1rem;
+            right: 2.1rem;
+            z-index: 99;
+        }
+
+        .top i {
+            color: #000;
+            background: #0ef;
+            padding: 10px;
+            border-radius: 0.5rem;
+            font-size: 20px;
+        }
+
+        @keyframes slideRight {
+            0% { transform: translateX(-100px); opacity: 0; }
+            100% { transform: translateX(0px); opacity: 1; }
+        }
+
+        @keyframes slideLeft {
+            0% { transform: translateX(100px); opacity: 0; }
+            100% { transform: translateX(0px); opacity: 1; }
+        }
+
+        @keyframes slideTop {
+            0% { transform: translateY(100px); opacity: 0; }
+            100% { transform: translateY(0px); opacity: 1; }
+        }
+
+        @keyframes slideBottom {
+            0% { transform: translateY(-100px); opacity: 0; }
+            100% { transform: translateY(0px); opacity: 1; }
+        }
+
+        @media (max-width: 1200px) {
+            .home {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+            .home-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            .home-sci {
+                justify-content: center;
+            }
+            .download-cv-wrapper {
+                margin-top: 20px;
+            }
+            .about {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .about-img {
+                order: 1;
+            }
+            .about-text {
+                order: 2;
+            }
+            .about-img img {
+                max-width: 280px;
+            }
+            .skills-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact {
+                grid-template-columns: 1fr;
+            }
+            .contact-text h2 {
+                font-size: 50px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+            }
+            .navbar a {
+                font-size: 14px;
+                margin-left: 15px;
+            }
+            .home-content h1 {
+                font-size: 36px;
+            }
+            .home-content h3 {
+                font-size: 24px;
+            }
+            .sub-title {
+                font-size: 40px;
+                padding-bottom: 40px;
+            }
+            .about-text h2 {
+                font-size: 40px;
+            }
+            .container1 {
+                padding: 20px;
+            }
+            .about-img img {
+                max-width: 260px;
+            }
+            .education-timeline::before {
+                left: 30px;
+            }
+            .edu-item {
+                justify-content: flex-start;
+                padding-left: 60px;
+                margin-bottom: 50px;
+            }
+            .edu-item:nth-child(even) {
+                justify-content: flex-start;
+            }
+            .edu-content {
+                width: 100%;
+            }
+            .edu-item:nth-child(odd) .edu-icon,
+            .edu-item:nth-child(even) .edu-icon {
+                left: -45px;
+                right: auto;
+                width: 50px;
+                height: 50px;
+            }
+            .edu-icon i {
+                font-size: 24px;
+            }
+            .edu-item::after {
+                left: 30px;
+                transform: translateY(-50%);
+            }
+            .experience-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .exp-image-wrapper {
+                height: 240px;
+            }
+            .exp-title {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            .navbar a {
+                margin-left: 0;
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+            .home-content h1 {
+                font-size: 28px;
+            }
+            .home-content h3 {
+                font-size: 20px;
+            }
+            .btn-box, .btn-download-cv {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .sub-title {
+                font-size: 32px;
+            }
+            .about-text h2 {
+                font-size: 32px;
+            }
+            .home-sci {
+                gap: 10px;
+            }
+            .about-img img {
+                max-width: 220px;
+            }
+            .edu-content {
+                padding: 20px;
+            }
+            .edu-content h3 {
+                font-size: 20px;
+            }
+            .exp-content {
+                padding: 20px;
+            }
+            .exp-image-wrapper {
+                height: 200px;
+            }
+            .exp-stats {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Portfolio</a>
+        <nav class="navbar">
+            <a href="#" style="--i:1" class="active">Home</a>
+            <a href="#about" style="--i:2">Tentang</a>
+            <a href="#education" style="--i:3">Pendidikan</a>
+            <a href="#projects" style="--i:4">Project</a>
+            <a href="#skills" style="--i:5">Keahlian</a>
+            <a href="#experience" style="--i:6">Pkl</a>
+            <a href="#contact" style="--i:7">Kontak</a>
+        </nav>
+    </header>
+    
+    <section class="home">
+        <div class="home-content">
+            <h3>Halo, Perkenalkan</h3>
+            <h1>Achmad Mustofa Yusuf</h1>
+            <h3>Saya seorang <span class="text"></span></h3>
+            <div class="home-sci">
+                <a href="https://www.instagram.com/musfagwz?igsh=MWIxdXllbzljMHc4aw==" style="--i:7"><i class='bx bxl-instagram'></i></a>
+                <a href="https://wa.me/+6287712922471" style="--i:8"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://www.facebook.com/share/1CPrtPCmF3/" style="--i:9"><i class='bx bxl-facebook'></i></a>
+                <div class="doc-links">
+                    <a href="#" class="doc-link" id="cvLink" style="--i:10">
+                        <i class='bx bxs-file-pdf'></i>
+                        <span class="tooltip">Download CV</span>
+                    </a>
+                    <a href="#" class="doc-link" id="certLink" style="--i:11">
+                        <i class='bx bxs-certification'></i>
+                        <span class="tooltip">Sertifikat UKK</span>
+                    </a>
+                </div>
+            </div>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: flex-start;">
+                <a href="#about" class="btn-box">Tentang Saya</a>
+                <div class="download-cv-wrapper">
+                    <a href="#" class="btn-download-cv" id="downloadCvBtn">
+                        <i class='bx bxs-download'></i> Download CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="about" id="about">
+        <div class="about-img" data-aos="fade-right" data-aos-duration="1000">
+            <img src="poto1.png" alt="Foto Profil Achmad Mustofa Yusuf" onerror="this.src='https://via.placeholder.com/300x400?text=Photo'">
+        </div>
+        <div class="about-text" data-aos="fade-left" data-aos-duration="1000">
+            <h2>Tentang <span>Saya</span></h2>
+            <h4>Achmad Mustofa Yusuf</h4>
+            <p>Saya adalah siswa lulusan SMK jurusan Teknik Komputer dan Jaringan (TKJ) dengan passion yang mendalam di bidang teknologi informasi. Selama masa pendidikan, saya telah mengembangkan keahlian dalam instalasi sistem operasi, perakitan dan perawatan komputer, serta konfigurasi jaringan. Saya memiliki pengalaman praktis dalam troubleshooting hardware dan software, serta kemampuan dalam merancang dan mengimplementasikan jaringan komputer.</p>
+            <p>Saya adalah pribadi yang kreatif, teliti, dan mampu bekerja secara mandiri maupun dalam tim. Saya selalu tertarik untuk mempelajari teknologi terbaru dan mengembangkan keterampilan saya di bidang IT. Saya siap berkontribusi dan berkembang dalam lingkungan profesional yang menantang.</p>
+            <a href="#experience" class="btn-box">Pengalaman Saya</a>
+        </div>
+    </section>
+    
+    <section id="education">
+        <div class="container">
+            <h1 class="sub-title" data-aos="fade-up" data-aos-duration="800">Riwayat <span>Pendidikan</span></h1>
+            <div class="education-timeline">
+                <div class="edu-item" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+                    <div class="edu-content">
+                        <span class="edu-year">2014 - 2019</span>
+                        <h3>Sekolah Dasar</h3>
+                        <h4>SD Islam Kota Pasuruan</h4>
+                        <p>Menyelesaikan pendidikan dasar dan aktif dalam kegiatan ekstrakurikuler.</p>
+                        <div class="edu-detail">
+                            <span><i class='bx bx-star'></i> Lulus dengan baik</span>
+                            <span><i class='bx bx-book-open'></i> 6 Tahun Pendidikan</span>
+                        </div>
+                    </div>
+                    <div class="edu-icon">
+                        <i class='bx bxs-school'></i>
+                    </div>
+                </div>
+                
+                <div class="edu-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <div class="edu-content">
+                        <span class="edu-year">2020 - 2024</span>
+                        <h3>Sekolah Menengah Pertama</h3>
+                        <h4>SMP Negeri 8 Kota Pasuruan</h4>
+                        <p>Mengembangkan minat di bidang teknologi dan mulai mengenal dasar-dasar komputer serta jaringan.</p>
+                        <div class="edu-detail">
+                            <span><i class='bx bx-star'></i> Lulus Dengan baik</span>
+                            <span><i class='bx bx-book-open'></i> 3 Tahun Pendidikan</span>
+                        </div>
+                    </div>
+                    <div class="edu-icon">
+                        <i class='bx bxs-graduation'></i>
+                    </div>
+                </div>
+                
+                <div class="edu-item" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
+                    <div class="edu-content">
+                        <span class="edu-year">2024 - 2026</span>
+                        <h3>Sekolah Menengah Kejuruan</h3>
+                        <h4>SMK Shalahuddin Kota Pasuruan</h4>
+                        <p>Jurusan Teknik Komputer dan Jaringan (TKJ). Mendalami instalasi jaringan, perakitan PC, troubleshooting hardware/software, dan manajemen server.</p>
+                        <div class="edu-detail">
+                            <span><i class='bx bx-star'></i> Lulusan Dengan baik</span>
+                            <span><i class='bx bx-book-open'></i> 3 Tahun Pendidikan</span>
+                        </div>
+                    </div>
+                    <div class="edu-icon">
+                        <i class='bx bx-network-chart'></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SECTION PROJECT SEDERHANA -->
+    <section id="projects">
+        <div class="container">
+            <h1 class="sub-title" data-aos="fade-up" data-aos-duration="800">Project <span>Saya</span></h1>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                    <div class="project-icon">
+                        <i class='bx bx-game'></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">🎮 Game Tebak Angka</h3>
+                        <p class="project-description">Game interaktif menebak angka rahasia antara 1-100. Dilengkapi dengan sistem clue dan pencatatan percobaan.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                        </div>
+                        <button class="play-btn" onclick="openGameModal()"><i class='bx bx-play'></i> Mainkan</button>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                    <div class="project-icon">
+                        <i class='bx bx-calculator'></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">🧮 Kalkulator Digital</h3>
+                        <p class="project-description">Kalkulator sederhana dengan operasi dasar matematika (+, -, ×, ÷). Desain modern dengan efek neon.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                        </div>
+                        <button class="play-btn" onclick="openCalculatorModal()"><i class='bx bx-play'></i> Coba</button>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                    <div class="project-icon">
+                        <i class='bx bx-list-check'></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">📋 To-Do List App</h3>
+                        <p class="project-description">Aplikasi daftar tugas sederhana untuk mengelola aktivitas sehari-hari. Fitur tambah, hapus, dan tandai selesai.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                        </div>
+                        <button class="play-btn" onclick="openTodoModal()"><i class='bx bx-play'></i> Coba</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <h1 class="sub-title" data-aos="fade-up" data-aos-duration="800">Keahlian <span>Saya</span></h1>
+        <div class="skills-container">
+            <div class="container1" data-aos="fade-right" data-aos-duration="800">
+                <h1 class="heading1">Keahlian Teknis</h1>
+                <div class="Technical-bars">
+                    <div class="bar"><i class='bx bx-desktop' style='color:#c95d2e'></i><div class="info"><span>Instalasi OS</span></div><div class="progress-line os"><span></span></div></div>
+                    <div class="bar"><i class='bx bx-wifi' style='color:#147bbc'></i><div class="info"><span>Jaringan Komputer</span></div><div class="progress-line network"><span></span></div></div>
+                    <div class="bar"><i class='bx bx-cog' style='color:#b0bc1e'></i><div class="info"><span>Perakitan PC</span></div><div class="progress-line assembly"><span></span></div></div>
+                    <div class="bar"><i class='bx bx-chip' style='color:#c322c9'></i><div class="info"><span>Perbaikan Hardware</span></div><div class="progress-line hardware"><span></span></div></div>
+                    <div class="bar"><i class='bx bx-code-alt' style='color:#69bcbc'></i><div class="info"><span>HTML & CSS</span></div><div class="progress-line htmlcss"><span></span></div></div>
+                </div>
+            </div>
+            <div class="container1" data-aos="fade-left" data-aos-duration="800">
+                <h1 class="heading1">Keahlian Profesional</h1>
+                <div class="radial-bars">
+                    <div class="radial-bar"><svg><circle class="progress-bar" cx="100" cy="100" r="80"></circle><circle class="path path-1" cx="100" cy="100" r="80"></circle></svg><div class="percentage">90%</div><div class="text">Kreativitas</div></div>
+                    <div class="radial-bar"><svg><circle class="progress-bar" cx="100" cy="100" r="80"></circle><circle class="path path-2" cx="100" cy="100" r="80"></circle></svg><div class="percentage">80%</div><div class="text">Komunikasi</div></div>
+                    <div class="radial-bar"><svg><circle class="progress-bar" cx="100" cy="100" r="80"></circle><circle class="path path-3" cx="100" cy="100" r="80"></circle></svg><div class="percentage">85%</div><div class="text">Pemecahan Masalah</div></div>
+                    <div class="radial-bar"><svg><circle class="progress-bar" cx="100" cy="100" r="80"></circle><circle class="path path-4" cx="100" cy="100" r="80"></circle></svg><div class="percentage">85%</div><div class="text">Kerja Tim</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- PENGALAMAN MAGANG DENGAN TAMPILAN SEDERHANA -->
+    <section id="experience">
+        <div class="main-text">
+            <h2 data-aos="fade-up" data-aos-duration="800">Praktek Kerja <span>Lapangan</span></h2>
+            <div class="experience-grid">
+                <!-- Card 1: Service Laptop -->
+                <div class="exp-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
+                    <div class="exp-image-wrapper">
+                        <img src="poto2.jpg" alt="Service Laptop" onerror="this.src='https://via.placeholder.com/500x300?text=Service+Laptop'">
+                        <div class="exp-overlay"></div>
+                        <div class="exp-badge">
+                            <i class='bx bx-briefcase'></i> PKL
+                        </div>
+                    </div>
+                    <div class="exp-content">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Service Laptop</h3>
+                            <span class="exp-date"><i class='bx bx-calendar'></i> 2025</span>
+                        </div>
+                        <div class="exp-company">
+                            <i class='bx bx-buildings'></i>
+                            <span>Raja Service Printer Pasuruan</span>
+                        </div>
+                        <div class="exp-skills">
+                            <span class="exp-skill-tag">Diagnosa dan perbaikan kerusakan hardware laptop</span>
+                            <span class="exp-skill-tag">Instalasi ulang sistem operasi Windows</span>
+                            <span class="exp-skill-tag">Penggantian komponen: LCD, keyboard, battery, fan</span>
+                            <span class="exp-skill-tag">Perbaikan masalah overheat dan cleaning service</span>
+                            <span class="exp-skill-tag">Recovery data untuk pelanggan yang kehilangan file</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Service Printer -->
+                <div class="exp-card" data-aos="flip-right" data-aos-duration="800" data-aos-delay="200">
+                    <div class="exp-image-wrapper">
+                        <img src="poto4.jpg" alt="Service Printer" onerror="this.src='https://via.placeholder.com/500x300?text=Service+Printer'">
+                        <div class="exp-overlay"></div>
+                        <div class="exp-badge">
+                            <i class='bx bx-briefcase'></i> PKL
+                        </div>
+                    </div>
+                    <div class="exp-content">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Service Printer</h3>
+                            <span class="exp-date"><i class='bx bx-calendar'></i> 2025</span>
+                        </div>
+                        <div class="exp-company">
+                            <i class='bx bx-buildings'></i>
+                            <span>Raja Service Printer Pasuruan</span>
+                        </div>
+                        <div class="exp-skills">
+                            <span class="exp-skill-tag">Perbaikan printer injet dan laser (Epson, Canon, HP)</span>
+                            <span class="exp-skill-tag">Handling error dan troubleshooting printer</span>
+                            <span class="exp-skill-tag">Pembersihan head printer dan penggantian cartridge</span>
+                            <span class="exp-skill-tag">Perbaikan masalah paper jam dan feeding roller</span>
+                            <span class="exp-skill-tag">Servis dan perawatan rutin untuk printer kantor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact" id="contact">
+        <div class="contact-text" data-aos="fade-right" data-aos-duration="800">
+            <h2>Hubungi <span>Saya</span></h2>
+            <h4>Mari bekerja sama</h4>
+            <p>Saya senang Anda telah mengunjungi website portfolio pribadi saya! Jika Anda memiliki pertanyaan, saran, atau ingin berkolaborasi, silakan hubungi saya.</p>
+            <ul class="contact-list">
+                <li><i class="bx bxs-send"></i> achmadmustofayusuff@gmail.com</li>
+                <li><i class="bx bxs-phone"></i> +6287712922471</li>
+            </ul>
+            <div class="contact-icons">
+                <a href="https://www.instagram.com/musfagwz"><i class="bx bxl-instagram"></i></a>
+                <a href="https://wa.me/+6287712922471"><i class="bx bxl-whatsapp"></i></a>
+                <a href="https://www.facebook.com/share/1CPrtPCmF3/"><i class="bx bxl-facebook"></i></a>
+            </div>
+        </div>
+        <div class="contact-form" data-aos="fade-left" data-aos-duration="800">
+            <form action="#" id="contactForm">
+                <input type="text" placeholder="Masukkan Nama Anda" required>
+                <input type="email" placeholder="Masukkan Email Anda" required>
+                <input type="text" placeholder="Masukkan Subjek">
+                <textarea placeholder="Masukkan Pesan Anda" required></textarea>
+                <input type="submit" value="Kirim" class="send">
+            </form>
+        </div>
+    </section>
+    
+    <div class="last-text">
+        <p>Dikembangkan oleh mustofa © 2025</p>
+    </div>
+    
+    <a href="#" class="top"><i class='bx bx-up-arrow-alt'></i></a>
+    
+    <!-- Modal Game -->
+    <div id="gameModal" class="game-modal">
+        <div class="game-container">
+            <span class="close-game" onclick="closeGameModal()">&times;</span>
+            <h3 class="game-title">🎮 Tebak Angka</h3>
+            <div class="tebak-angka-game" style="text-align: center;">
+                <p>Tebak angka rahasia antara 1 - 100</p>
+                <input type="number" id="guessInput" class="game-input" placeholder="Masukkan angka">
+                <div>
+                    <button class="game-btn" onclick="checkGuess()">Tebak!</button>
+                    <button class="game-btn" onclick="resetGame()">Reset</button>
+                </div>
+                <div id="gameMessage" class="game-message" style="margin: 15px 0;"></div>
+                <div id="attemptCount" class="game-attempt">Percobaan: 0</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="calculatorModal" class="game-modal">
+        <div class="game-container" style="max-width: 350px;">
+            <span class="close-game" onclick="closeCalculatorModal()">&times;</span>
+            <h3 class="game-title">🧮 Kalkulator</h3>
+            <div style="text-align: center;">
+                <input type="text" id="calcDisplay" class="game-input" style="width: 100%; margin-bottom: 15px; font-size: 24px;" readonly>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                    <button class="game-btn" onclick="calcAppend('7')">7</button>
+                    <button class="game-btn" onclick="calcAppend('8')">8</button>
+                    <button class="game-btn" onclick="calcAppend('9')">9</button>
+                    <button class="game-btn" onclick="calcAppend('/')">÷</button>
+                    <button class="game-btn" onclick="calcAppend('4')">4</button>
+                    <button class="game-btn" onclick="calcAppend('5')">5</button>
+                    <button class="game-btn" onclick="calcAppend('6')">6</button>
+                    <button class="game-btn" onclick="calcAppend('*')">×</button>
+                    <button class="game-btn" onclick="calcAppend('1')">1</button>
+                    <button class="game-btn" onclick="calcAppend('2')">2</button>
+                    <button class="game-btn" onclick="calcAppend('3')">3</button>
+                    <button class="game-btn" onclick="calcAppend('-')">-</button>
+                    <button class="game-btn" onclick="calcAppend('0')">0</button>
+                    <button class="game-btn" onclick="calcClear()">C</button>
+                    <button class="game-btn" onclick="calcResult()">=</button>
+                    <button class="game-btn" onclick="calcAppend('+')">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="todoModal" class="game-modal">
+        <div class="game-container" style="max-width: 450px;">
+            <span class="close-game" onclick="closeTodoModal()">&times;</span>
+            <h3 class="game-title">📋 To-Do List</h3>
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <input type="text" id="todoInput" class="game-input" style="flex: 1;" placeholder="Tambah tugas baru...">
+                <button class="game-btn" onclick="addTodo()">Tambah</button>
+            </div>
+            <ul id="todoList" style="list-style: none; max-height: 300px; overflow-y: auto;"></ul>
+        </div>
+    </div>
+    
+    <script>
+        AOS.init({ once: true, duration: 1000, offset: 100 });
+        
+        var typed = new Typed(".text", {
+            strings: ["Siswa Lulusan Smk", "Teknik komputer jaringan"],
+            typeSpeed: 100, backSpeed: 60, loop: true
+        });
+        
+        // Game Variables
+        let secretNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+        
+        function openGameModal() { document.getElementById('gameModal').classList.add('active'); resetGame(); }
+        function closeGameModal() { document.getElementById('gameModal').classList.remove('active'); }
+        
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guessInput').value);
+            const message = document.getElementById('gameMessage');
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                message.innerHTML = '⚠️ Masukkan angka antara 1 - 100!';
+                message.style.color = '#ff6b6b';
+                return;
+            }
+            attempts++;
+            document.getElementById('attemptCount').innerHTML = `Percobaan: ${attempts}`;
+            if (guess === secretNumber) {
+                message.innerHTML = `🎉 SELAMAT! Angka ${secretNumber} benar! ${attempts} kali percobaan. 🎉`;
+                message.style.color = '#0ef';
+                setTimeout(resetGame, 3000);
+            } else if (guess < secretNumber) {
+                message.innerHTML = '📉 Terlalu Kecil! Coba lagi.';
+                message.style.color = '#ffd700';
+            } else {
+                message.innerHTML = '📈 Terlalu Besar! Coba lagi.';
+                message.style.color = '#ffd700';
+            }
+            document.getElementById('guessInput').value = '';
+            document.getElementById('guessInput').focus();
+        }
+        
+        function resetGame() {
+            secretNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            document.getElementById('attemptCount').innerHTML = 'Percobaan: 0';
+            document.getElementById('gameMessage').innerHTML = '';
+            document.getElementById('guessInput').value = '';
+        }
+        
+        // Calculator
+        let calcDisplay = document.getElementById('calcDisplay');
+        function calcAppend(value) { calcDisplay.value += value; }
+        function calcClear() { calcDisplay.value = ''; }
+        function calcResult() {
+            try {
+                let expression = calcDisplay.value.replace(/×/g, '*').replace(/÷/g, '/');
+                calcDisplay.value = eval(expression);
+            } catch(e) { calcDisplay.value = 'Error'; }
+        }
+        function openCalculatorModal() { document.getElementById('calculatorModal').classList.add('active'); calcClear(); }
+        function closeCalculatorModal() { document.getElementById('calculatorModal').classList.remove('active'); }
+        
+        // To-Do List
+        let todos = [];
+        function openTodoModal() { document.getElementById('todoModal').classList.add('active'); renderTodoList(); }
+        function closeTodoModal() { document.getElementById('todoModal').classList.remove('active'); }
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+            if (text) { todos.push({ text: text, completed: false }); input.value = ''; renderTodoList(); }
+        }
+        function toggleTodo(index) { todos[index].completed = !todos[index].completed; renderTodoList(); }
+        function deleteTodo(index) { todos.splice(index, 1); renderTodoList(); }
+        function renderTodoList() {
+            const list = document.getElementById('todoList');
+            list.innerHTML = '';
+            todos.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 10px; margin: 5px 0; background: rgba(0,238,255,0.1); border-radius: 10px;';
+                li.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;" onclick="toggleTodo(${index})">
+                        <i class='bx ${todo.completed ? 'bx-check-circle' : 'bx-circle'}' style="color: #0ef; font-size: 20px;"></i>
+                        <span style="${todo.completed ? 'text-decoration: line-through; color: #888;' : 'color: #fff;'}">${todo.text}</span>
+                    </div>
+                    <button class="game-btn" style="padding: 5px 10px;" onclick="deleteTodo(${index})">Hapus</button>
+                `;
+                list.appendChild(li);
+            });
+        }
+        
+        // ========== FUNGSI DOWNLOAD CV YANG TELAH DIPERBAHARUI ==========
+        function downloadCV() {
+            // Path ke file CV (sesuaikan dengan nama file Anda)
+            const cvPath = 'muscv.pdf';
+            
+            // Membuat elemen link temporary untuk download
+            const link = document.createElement('a');
+            link.href = cvPath;
+            link.download = 'CV_Achmad_Mustofa_Yusuf.pdf'; // Nama file saat didownload
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Event listener untuk tombol download CV (ikon PDF)
+        const cvLink = document.getElementById('cvLink');
+        if (cvLink) {
+            cvLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                downloadCV();
+            });
+        }
+        
+        // Event listener untuk tombol download CV (tombol biru)
+        const downloadCvBtn = document.getElementById('downloadCvBtn');
+        if (downloadCvBtn) {
+            downloadCvBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                downloadCV();
+            });
+        }
+        
+        // Event listener untuk sertifikat (jika ada file sertifikat nanti)
+        const certLink = document.getElementById('certLink');
+        if (certLink) {
+            certLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('Fitur download sertifikat akan segera hadir.');
+            });
+        }
+        // ========== END FUNGSI DOWNLOAD CV ==========
+        
+        // Navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.navbar a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 200)) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+                if (current === null && link.getAttribute('href') === '#') link.classList.add('active');
+            });
+        });
+        
+        // Form
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Terima kasih! Pesan Anda telah terkirim.');
+                contactForm.reset();
+            });
+        }
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Header background
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            header.style.background = window.scrollY > 100 ? 'rgba(8, 27, 41, 0.98)' : 'rgba(8, 27, 41, 0.95)';
+            header.style.backdropFilter = 'blur(10px)';
+        });
+        
+        // Close modals with ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeGameModal(); closeCalculatorModal(); closeTodoModal();
+            }
+        });
+    </script>
+</body>
+</html>
